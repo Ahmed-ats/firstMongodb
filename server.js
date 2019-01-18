@@ -1,14 +1,11 @@
 
 
 var express = require('express');
-
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var path = require('path');
-
 var Note = require('./models/Note.js');
 var Article = require('./models/Article.js');
-
 var axios = require('axios');
 var cheerio = require('cheerio');
 
