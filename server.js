@@ -36,7 +36,7 @@ app.set("view engine", "handlebars");
 mongoose.connect("mongodb://localhost/firstProject", { useNewUrlParser: true });
 
 if (process.env.MONGODB_URI){
-	mongoose.connect(rocess.env.MONGODB_URI)
+	mongoose.connect(process.env.MONGODB_URI)
 } else {
 	mongoose.connect(databaseUri)
 }
