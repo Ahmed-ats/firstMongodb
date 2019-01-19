@@ -31,10 +31,28 @@ app.engine("handlebars", exphbs({
 
 app.set("view engine", "handlebars");
 
+ var databaseUri = "mongodb://localhost/firstProject";
 
 mongoose.connect("mongodb://localhost/firstProject", { useNewUrlParser: true });
 
-app.get("/", function(req,res){
+if (process.env.MONGODB_URI){
+	mongoose.connect(rocess.env.MONGODB_URI)
+} else {
+	mongoose.connect(databaseUri)
+}
+var db = mongoose.connection;
+
+	db.on("error", function (err){
+
+		console.log("Mongoose Error:" , err)
+	});
+
+	db.once("open", function (err){
+
+		console.log("Mongoose connection successful")
+	})
+	
+	app.get("/", function(req,res){
 	Article.find({"saved": false}).limit(20).exec(function(error,data){
 		var hbsObject = {
 			article: data
